@@ -1,6 +1,9 @@
 package com.listin.ListIn.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,7 +17,10 @@ public class Category {
     private String name;
 
     @OneToMany(mappedBy = "category")
-    private List<ItemList> itemLists;
+    @JsonIgnore
+    private List<ItemList> itemLists = new ArrayList<>();
+
+
 
     public Category() {
     }

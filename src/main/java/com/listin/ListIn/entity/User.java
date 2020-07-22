@@ -1,6 +1,9 @@
 package com.listin.ListIn.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,7 +21,12 @@ public class User {
     private String apiKey;
 
     @OneToMany(mappedBy = "user")
-    private List<CheckList> checkLists;
+    @JsonIgnore
+    private List<CheckList> checkLists = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<ItemList> itemLists = new ArrayList<>();
+
 
     public User() {
     }
@@ -77,5 +85,13 @@ public class User {
 
     public void setCheckLists(List<CheckList> checkLists) {
         this.checkLists = checkLists;
+    }
+
+    public List<ItemList> getItemLists() {
+        return itemLists;
+    }
+
+    public void setItemLists(List<ItemList> itemLists) {
+        this.itemLists = itemLists;
     }
 }

@@ -1,5 +1,7 @@
 package com.listin.ListIn.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,10 +16,12 @@ public class ItemOnCheckList {
 
     @ManyToOne
     @JoinColumn(name = "checklist_id")
+    @JsonIgnore
     private CheckList checkList;
 
     @ManyToOne
     @JoinColumn(name = "itemList_id")
+    @JsonIgnore
     private ItemList itemList;
 
     public ItemOnCheckList() {

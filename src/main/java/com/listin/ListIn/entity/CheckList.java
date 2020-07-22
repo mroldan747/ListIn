@@ -1,6 +1,9 @@
 package com.listin.ListIn.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,9 +21,14 @@ public class CheckList {
     private User user;
 
     @OneToMany(mappedBy = "checkList")
-    private List<ItemOnCheckList> itemOnCheckLists;
+    @JsonIgnore
+    private List<ItemOnCheckList> itemOnCheckLists = new ArrayList<>();
 
     public CheckList() {
+    }
+
+    public CheckList(String name) {
+        this.name = name;
     }
 
     public Long getId() {
