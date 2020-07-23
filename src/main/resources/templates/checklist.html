@@ -9,6 +9,7 @@
 <header class="header">
     <nav>
         <div class="nav-wrapper">
+            <a th:href="@{/checklists}"><i class="material-icons">keyboard_arrow_left</i></a>
             <h2 th:text="${checklist.name}">Colombie</h2>
         </div>
     </nav>
@@ -35,8 +36,9 @@
             <h3 th:text="${category}">Electronics</h3>
         </div>
         <div class="items row" >
-            <div class="item" th:each="item : ${items}" >
-                <p th:text="${item.name}">Gopro</span></p>
+            <div class="item" th:each="item : ${items}" th:id="${item.id}" th:attr="data-done= ${item.done}">
+                <p th:text="${item.itemList.name}">Gopro</p>
+                <p th:if="${item.quantity > 1}" th:text="${item.quantity}">x31</p>
             </div>
         </div>
     </div>
@@ -62,5 +64,21 @@
         src="https://code.jquery.com/jquery-3.4.1.slim.min.js">
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script type="text/javascript">
+    let items = document.getElementsByClassName("item");
+    for (let i = 0; i < items.length; i++) {
+        if (items[i].dataset.done) {
+            items[i].classList.toggle("active");
+        }
+        items[i].addEventListener("click", function () {
+            items[i].classList.toggle("active");
+            let itemId = items[i].id;
+            fetch('/validateItem/' + itemId + '/')
+                .then(function (response) {
+                    return response.text()
+                })
+        })
+    }
+</script>
 </body>
 </html>

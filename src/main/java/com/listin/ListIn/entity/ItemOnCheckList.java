@@ -13,6 +13,7 @@ public class ItemOnCheckList {
     private Long id;
 
     private Long quantity = 0L;
+    private Boolean done = false;
 
     @ManyToOne
     @JoinColumn(name = "checklist_id")
@@ -57,5 +58,13 @@ public class ItemOnCheckList {
 
     public void setItemList(ItemList itemList) {
         this.itemList = itemList;
+    }
+
+    public Boolean getDone() {
+        return done;
+    }
+
+    public void setDone(Boolean done) {
+        this.done = done;
     }
 }

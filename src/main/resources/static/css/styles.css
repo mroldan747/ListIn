@@ -30,9 +30,20 @@
     align-items: center;
 }
 
-.header h2 {
+.nav-wrapper a i{
+    font-size: 3rem;
+}
+.nav-wrapper a {
+    flex-basis: 10%
+}
+
+.nav-wrapper h2 {
     margin-top:1.3rem;
     font-size: 2rem;
+    text-transform: capitalize;
+    flex-basis: 85%;
+    text-align: center;
+    margin-right: 1rem;
 }
 
 .btn-floating {

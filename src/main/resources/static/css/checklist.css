@@ -24,8 +24,10 @@
 .category-title h3 {
     font-size: 1.5rem;
     color: var(--light-gray);
-    margin:0.5rem
+    margin:0.5rem;
+    text-transform: capitalize;
 }
+
 .items {
     display: grid;
     grid-template-columns: 0.8fr 0.8fr 0.8fr;
@@ -46,12 +48,22 @@
     border-radius: 10px;
     flex-wrap: wrap;
 }
+.item:hover {
+    cursor: pointer;
+}
+.item.active {
+    background-color: var(--blue);
+}
+.item.active > p {
+    color: var(--dark-gray);
+}
 
 .item p{
     margin: 0;
     padding: 0 0.3rem;
     text-align: center;
     color: var(--blue);
-    flex-basis: 100%
+    flex-basis: 100%;
+    text-transform: capitalize;
 }
 

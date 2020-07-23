@@ -4,6 +4,7 @@ import com.listin.ListIn.entity.*;
 import com.listin.ListIn.repository.*;
 import com.listin.ListIn.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -95,15 +96,14 @@ public class MainController {
         if (optionalCheckList.isPresent()) {
             List<ItemOnCheckList> itemsOnChecklist = itemOnCheckListRepository
                                                     .findAllByCheckList(optionalCheckList.get());
-            List<ItemList> items = new ArrayList<>();
+
             HashSet<String> categories = new HashSet<>();
 
             for (ItemOnCheckList it : itemsOnChecklist) {
-                items.add(it.getItemList());
                 categories.add(it.getItemList().getCategory().getName());
             }
 
-            model.addAttribute("itemsCategory",categoryMap(categories, items));
+            model.addAttribute("itemsCategory",categoryMap2(categories, itemsOnChecklist));
             model.addAttribute("checklist", optionalCheckList.get());
         }
         return "checklist";
@@ -112,12 +112,12 @@ public class MainController {
     public String searchItemOnChecklist(@RequestParam Long checklistId,
                                         @RequestParam String search,
                                         Model model){
-        List<ItemList> allitems = itemListRepository.findAllByCheckList(checklistId, search);
+        List<ItemOnCheckList> allitems = itemOnCheckListRepository.findAllByCheckList(checklistId, search);
         HashSet<String> categories = new HashSet<>();
-        for (ItemList item: allitems) {
-            categories.add(item.getCategory().getName());
+        for (ItemOnCheckList it : allitems) {
+            categories.add(it.getItemList().getCategory().getName());
         }
-        model.addAttribute("itemsCategory", categoryMap(categories, allitems));
+        model.addAttribute("itemsCategory", categoryMap2(categories, allitems));
         model.addAttribute("checklist", checkListRepository.findById(checklistId).get());
         return "checklist";
 
@@ -224,6 +224,22 @@ public class MainController {
 
     }
 
+    @GetMapping("/validateItem/{id}")
+    public Boolean validateItem(@PathVariable Long id) {
+        Optional<ItemOnCheckList> optionalItemOnCheckList = itemOnCheckListRepository.findById(id);
+        if (optionalItemOnCheckList.isPresent()) {
+            ItemOnCheckList itemOnCheckList = optionalItemOnCheckList.get();
+            if (itemOnCheckList.getDone() == null || !itemOnCheckList.getDone()) {
+                itemOnCheckList.setDone(true);
+            } else {
+                itemOnCheckList.setDone(false);
+            }
+            itemOnCheckListRepository.save(itemOnCheckList);
+            return true;
+        }
+        return false;
+    }
+
     @GetMapping("/profile")
     public String profile(Model model) {
         User user = userService.getLoggedUsername();
@@ -239,15 +255,6 @@ public class MainController {
         model.addAttribute("user", user);
         model.addAttribute("done", true);
         return "profile";
-    }
-    @GetMapping("/init")
-    @ResponseBody
-    public User init() {
-
-        User user = new User("b","bastien", "bastien@wcs.fr",
-                passwordEncoder.encode("tacos"));
-        user.apiKeyGeneration();
-        return userRepository.save(user);
     }
 
     // http://websystique.com/spring-security/spring-security-4-logout-example/
@@ -267,6 +274,20 @@ public class MainController {
             List<ItemList> itemsCategory = new ArrayList<>();
             for (ItemList item: allitems) {
                 if (item.getCategory().getName().equals(category)) {
+                    itemsCategory.add(item);
+                }
+            }
+            mapItems.put(category, itemsCategory);
+        }
+        return mapItems;
+    }
+
+    public Map<String, List<ItemOnCheckList>> categoryMap2 (HashSet<String> categories, List<ItemOnCheckList> allitems) {
+        Map<String, List<ItemOnCheckList>> mapItems = new HashMap<>();
+        for (String category : categories) {
+            List<ItemOnCheckList> itemsCategory = new ArrayList<>();
+            for (ItemOnCheckList item: allitems) {
+                if (item.getItemList().getCategory().getName().equals(category)) {
                     itemsCategory.add(item);
                 }
             }
