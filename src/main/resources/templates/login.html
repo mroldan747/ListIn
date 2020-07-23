@@ -2,19 +2,30 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:include="fragments/head.html :: head"></th:block>
-    <title>ListIn</title>
-    <link th:href="@{css/index.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <title>ListIn | Login</title>
 </head>
 <body class="index-body">
 <main class="index">
     <div class="index-logo">
         <img th:src="@{/image/Logo.png}">
     </div>
-    <div class="index-btns">
-        <a th:href="@{/login}" class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>LogIn</a>
-        <a href="#" class="waves-effect waves-light btn"><i class="material-icons right">cloud</i>Register</a>
-    </div>
+    <form action="/login" class="index-btns" method="post">
+        <div class="input-field">
+            <input name="username" class="validate" type="text" id="username">
+            <label for="username">Username</label>
+        </div>
+        <div class="input-field">
+            <input class="validate" id="password" name="password" type="password">
+            <label for="password">Password</label>
+        </div>
+        <div class="input-field go">
+            <input class="btn" type="button" value="Go">
+        </div>
+
+    </form>
 </main>
+
 <!-- Compiled and minified JavaScript -->
 <script crossorigin="anonymous"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

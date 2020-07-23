@@ -1,0 +1,24 @@
+@import url("styles.css");
+
+.index-body {
+    background-color: var(--blue);
+}
+
+.index {
+    margin-top: 10Rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.index-btns {
+    display: flex;
+    flex-direction: column;
+}
+
+.index-btns .btn {
+    margin-bottom: 2rem;
+    background-color: var(--light-gray);
+    color: var(--blue);
+    border-radius: 6px;
+}

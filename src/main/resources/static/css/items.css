@@ -1,0 +1,27 @@
+@import url("styles.css");
+@import url("checklist.css");
+
+
+.modal-content h4{
+    color: var(--blue);
+    text-align: center;
+}
+
+#modal-quantity {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+input[type="number"]:not(.browser-default) {
+    background-color: var(--light-gray);
+    border-bottom: none;
+    border-radius: 7px;
+    box-shadow: 0 3px 3px 0 rgba(0,0,0,0.14),0 1px 7px 0 rgba(0,0,0,0.12),0 3px 1px -1px rgba(0,0,0,0.2);
+    width: 60%;
+    margin: 0;
+}
+
+.done {
+    background-color: var(--blue);
+}

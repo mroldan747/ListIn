@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/head.html :: head"></th:block>
+    <link rel="stylesheet" th:href="@{css/register.css}">
+    <title>ListIn | Login</title>
+</head>
+<body class="main">
+<header class="header">
+    <nav>
+        <div class="nav-wrapper">
+            <h2>Register</h2>
+        </div>
+    </nav>
+</header>
+<main class="new-item-main main">
+    <form class="new-item" method="post" action="">
+        <div class="row">
+            <div class="input-field col s10 offset-s1">
+                <input name="username" class="validate" type="text" id="username">
+                <label for="username">Username</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s10 offset-s1">
+                <input name="email" class="validate" type="email" id="email">
+                <label for="email">Email</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s10 offset-s1">
+                <input name="password" class="validate" type="password" id="password">
+                <label for="password">Password</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s10 offset-s1">
+                <input name="passConfirmation" class="validate" type="text" id="passConfirmation">
+                <label for="passConfirmation">Password Confirmation</label>
+            </div>
+        </div>
+        <div class="row">
+            <button class="btn new-item-add col s4 offset-s4"><i class="material-icons left">send</i>Send</button>
+        </div>
+    </form>
+
+</main>
+
+<!-- Compiled and minified JavaScript -->
+<script crossorigin="anonymous"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        src="https://code.jquery.com/jquery-3.4.1.slim.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('select').formSelect();
+    });
+</script>
+</body>
+</html>

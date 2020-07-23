@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/head.html :: head"></th:block>
+    <link rel="stylesheet" th:href="@{css/profile.css}">
+    <title>ListIn | Login</title>
+</head>
+<body class="main">
+<header class="header">
+    <nav>
+        <div class="nav-wrapper">
+            <h2>UserName</h2>
+        </div>
+    </nav>
+</header>
+<main class="new-item-main main">
+    <form class="new-item" method="post" action="">
+        <div class="row">
+            <h5 class="col s8 offset-s2">Modify your password</h5>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s10 offset-s1">
+                <input name="password" class="validate" type="password" id="password">
+                <label for="password">New Password</label>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s10 offset-s1">
+                <input name="passConfirmation" class="validate" type="text" id="passConfirmation">
+                <label for="passConfirmation">Password Confirmation</label>
+            </div>
+        </div>
+        <div class="row">
+            <button class="btn new-item-add col s4 offset-s4"><i class="material-icons left">send</i>Send</button>
+        </div>
+    </form>
+
+    <div class="api">
+        <div class="row api-title">
+            <h5 class="col s5 offset-s1">API KEY</h5>
+        </div>
+
+        <div class="row ">
+            <div  class="apikey col s10 offset-s1">
+                <p>asd452535</p>
+            </div>
+
+        </div>
+    </div>
+</main>
+<div class="nav-bar-down">
+    <div>
+        <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">settings</i></a>
+    </div>
+    <div>
+        <a class="btn-floating btn-large waves-effect waves-light"><i
+                class="material-icons">assignment_turned_in</i></a>
+    </div>
+    <div>
+        <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">storage</i></a>
+    </div>
+    <div>
+        <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">exit_to_app</i></a>
+    </div>
+</div>
+<!-- Compiled and minified JavaScript -->
+<script crossorigin="anonymous"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        src="https://code.jquery.com/jquery-3.4.1.slim.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('select').formSelect();
+    });
+</script>
+</body>
+</html>

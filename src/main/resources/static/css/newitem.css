@@ -1,0 +1,24 @@
+@import url("styles.css");
+
+
+.new-item-main {
+    margin-top: 7rem;
+}
+
+.select-dropdown {
+    padding-left: 8px !important;;
+}
+
+.select-wrapper .caret{
+    z-index: 99;
+    fill: var(--blue);
+}
+
+.input-field > label {
+    left: 17px !important;
+    color: var(--placeholder);
+}
+
+.btn.new-item-add {
+    background-color: var(--blue);
+}

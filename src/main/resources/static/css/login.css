@@ -1,0 +1,19 @@
+@import url("styles.css");
+@import url("index.css");
+
+.index-btns {
+    width: 60%;
+    align-items: center
+}
+
+
+
+.index-btns .btn {
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.go {
+    width: 60%;
+}
+
