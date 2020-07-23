@@ -9,14 +9,18 @@
 <header class="header">
     <nav>
         <div class="nav-wrapper">
-            <h2>UserName</h2>
+            <h2 th:text="${user.username}">UserName</h2>
         </div>
     </nav>
 </header>
 <main class="new-item-main main">
-    <form class="new-item" method="post" action="">
+    <form class="new-item" method="post" action="/changepassw">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
         <div class="row">
             <h5 class="col s8 offset-s2">Modify your password</h5>
+        </div>
+        <div class="row password">
+            <p class="col s8 offset-s2" th:if="${done}">Password Modified</p>
         </div>
 
         <div class="row">
@@ -44,7 +48,7 @@
 
         <div class="row ">
             <div  class="apikey col s10 offset-s1">
-                <p>asd452535</p>
+                <p th:text="${user.apiKey}">asd452535</p>
             </div>
 
         </div>
@@ -52,17 +56,14 @@
 </main>
 <div class="nav-bar-down">
     <div>
-        <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">settings</i></a>
+        <a class="btn-floating btn-large waves-effect waves-light" th:href="@{/profile}" ><i class="material-icons">settings</i></a>
     </div>
     <div>
-        <a class="btn-floating btn-large waves-effect waves-light"><i
+        <a class="btn-floating btn-large waves-effect waves-light" th:href="@{/checklists}"><i
                 class="material-icons">assignment_turned_in</i></a>
     </div>
     <div>
-        <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">storage</i></a>
-    </div>
-    <div>
-        <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">exit_to_app</i></a>
+        <a class="btn-floating btn-large waves-effect waves-light" th:href="@{/logout}"><i class="material-icons">exit_to_app</i></a>
     </div>
 </div>
 <!-- Compiled and minified JavaScript -->

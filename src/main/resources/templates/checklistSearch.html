@@ -15,42 +15,33 @@
 </header>
 <main class="main">
     <div class="checklists-search-add">
-        <form>
+        <form method="get" action="/searchChecklist">
             <div class="input-field">
-                <input id="searchChecklist" name="searchChecklist" type="search">
+                <input id="searchChecklist" name="search" type="search">
                 <label for="searchChecklist">Search</label>
             </div>
         </form>
-        <a class="btn-floating btn-medium waves-effect waves-light"><i class="material-icons">add</i></a>
+        <a class="btn-floating btn-medium waves-effect waves-light" th:href="@{/newChecklist}"><i class="material-icons">add</i></a>
     </div>
 
     <div class="checklists">
-        <div class="row">
+        <div class="row" th:each="checklist : ${checklists}">
             <div class="checklist-list col s11">
-                <a href="#">SKI</a>
+                <a th:href="@{/checklists/{id} (id = ${checklist.id})}" th:text="${checklist.name}">SKI</a>
             </div>
         </div>
-
-        <div class="row">
-            <div class="checklist-list col s11">
-                <a href="#">Colombie</a>
-            </div>
-        </div>
-
     </div>
 </main>
 <div class="nav-bar-down">
     <div>
-        <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">settings</i></a>
+        <a class="btn-floating btn-large waves-effect waves-light" th:href="@{/profile}" ><i class="material-icons">settings</i></a>
     </div>
     <div>
-        <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">assignment_turned_in</i></a>
+        <a class="btn-floating btn-large waves-effect waves-light" th:href="@{/checklists}"><i
+                class="material-icons">assignment_turned_in</i></a>
     </div>
     <div>
-        <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">storage</i></a>
-    </div>
-    <div>
-        <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">exit_to_app</i></a>
+        <a class="btn-floating btn-large waves-effect waves-light" th:href="@{/logout}"><i class="material-icons">exit_to_app</i></a>
     </div>
 </div>
 <!-- Compiled and minified JavaScript -->

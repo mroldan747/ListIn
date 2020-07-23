@@ -24,3 +24,8 @@
 .api-title {
     margin-bottom: 0;
 }
+
+.password {
+    color: var(--blue);
+    font-style: italic;
+}

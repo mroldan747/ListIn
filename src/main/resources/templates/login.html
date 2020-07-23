@@ -11,6 +11,7 @@
         <img th:src="@{/image/Logo.png}">
     </div>
     <form action="/login" class="index-btns" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
         <div class="input-field">
             <input name="username" class="validate" type="text" id="username">
             <label for="username">Username</label>
@@ -20,7 +21,7 @@
             <label for="password">Password</label>
         </div>
         <div class="input-field go">
-            <input class="btn" type="button" value="Go">
+            <input class="btn" type="submit" value="Go">
         </div>
 
     </form>

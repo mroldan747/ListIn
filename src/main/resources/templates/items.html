@@ -9,90 +9,66 @@
 <header class="header">
     <nav>
         <div class="nav-wrapper">
-            <h2>ADD AN ITEM</h2>
+            <h2>ITEMS</h2>
         </div>
     </nav>
 </header>
 <main class="main">
     <div class="checklists-search-add">
-        <form>
+        <form action="/searchItems" method="get">
+            <input type="hidden" th:name="checklistId" th:value="${checklist}"/>
             <div class="input-field">
-                <input id="searchChecklist" name="searchChecklist" type="search">
+                <input id="searchChecklist" name="search" type="search">
                 <label for="searchChecklist">Search</label>
             </div>
         </form>
-        <a class="btn-floating btn-medium waves-effect waves-light"><i class="material-icons">add</i></a>
+        <a class="btn-floating btn-medium waves-effect waves-light" th:href="@{/newItem(checklist = ${checklist})}"><i class="material-icons">add</i></a>
     </div>
     <div>
         <form class="reset">
             <button>Reset</button>
         </form>
     </div>
-    <div class="category">
+    <div class="category"th:each="entry : ${itemsCategory}"
+         th:with="category = ${entry.key}, items = ${entry.value}">
         <div class="row category-title">
-            <h3>Electronics</h3>
+            <h3 th:text="${category}">Electronics</h3>
         </div>
-        <div class="items row">
-            <div>
-                <a class="item btn modal-trigger" href="#modal1">
-                    <p>Gopro</p>
+        <div class="items row" >
+            <div th:each="item : ${items}">
+                <a class="item btn modal-trigger" th:attr="href='#modal'+${item.id}">
+                    <p th:text="${item.name}">Gopro</p>
                 </a>
-                <div class="modal" id="modal1">
-                    <form class="modal-content">
+                <div class="modal" th:id="|modal${item.id}|">
+                    <form class="modal-content" method="post" action="/addItems">
                         <h4>Quantity</h4>
                         <div id="modal-quantity">
                             <div class="input-field">
-                                <input name="quantity" class="validate" type="number" id="quantity">
-                                <label for="quantity">Quantity</label>
+                                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                                <input type="hidden" th:name="checklistId" th:value="${checklist}"/>
+                                <input type="hidden" th:name="itemId" th:value="${item.id}"/>
+                                <input name="quantity" class="validate" type="number" th:id="'quantity'+${item.id}">
+                                <label th:for="'quantity'+${item.id}">Quantity</label>
                             </div>
                             <button class="btn done">Done</button>
                         </div>
-
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
-
-    <div class="category">
-        <div class="row category-title">
-            <h3>Sac à Dos</h3>
-        </div>
-        <div class="items row">
-            <div class="item">
-                <p>Gopro</p>
-            </div>
-            <div class="item ">
-                <p>Maillot de bain</p>
-                <p>x2</p>
-            </div>
-            <div class="item ">
-                <p>Appareil Photo</p>
-            </div>
-            <div class="item">
-                <p>Gopro</p>
-            </div>
-
-        </div>
-
-    </div>
-
 </main>
 
 <div class="nav-bar-down">
     <div>
-        <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">settings</i></a>
+        <a class="btn-floating btn-large waves-effect waves-light" th:href="@{/profile}" ><i class="material-icons">settings</i></a>
     </div>
     <div>
-        <a class="btn-floating btn-large waves-effect waves-light"><i
+        <a class="btn-floating btn-large waves-effect waves-light" th:href="@{/checklists}"><i
                 class="material-icons">assignment_turned_in</i></a>
     </div>
     <div>
-        <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">storage</i></a>
-    </div>
-    <div>
-        <a class="btn-floating btn-large waves-effect waves-light"><i class="material-icons">exit_to_app</i></a>
+        <a class="btn-floating btn-large waves-effect waves-light" th:href="@{/logout}"><i class="material-icons">exit_to_app</i></a>
     </div>
 </div>
 <!-- Compiled and minified JavaScript -->

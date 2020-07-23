@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "itemList")
-public class ItemList {
+public class ItemList implements Comparable<ItemList>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -71,5 +71,10 @@ public class ItemList {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public int compareTo(ItemList other){
+        return category.getName().compareTo(other.getCategory().getName());
     }
 }

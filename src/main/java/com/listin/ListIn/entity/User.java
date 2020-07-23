@@ -1,6 +1,7 @@
 package com.listin.ListIn.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.apache.commons.lang3.RandomStringUtils;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -29,6 +30,13 @@ public class User {
 
 
     public User() {
+    }
+
+    public User(String username, String name, String email, String password) {
+        this.username = username;
+        this.name = name;
+        this.email = email;
+        this.password = password;
     }
 
     public Long getId() {
@@ -93,5 +101,10 @@ public class User {
 
     public void setItemLists(List<ItemList> itemLists) {
         this.itemLists = itemLists;
+    }
+
+    public String apiKeyGeneration() {
+        this.apiKey =  RandomStringUtils.randomAlphanumeric(10);
+        return this.apiKey;
     }
 }

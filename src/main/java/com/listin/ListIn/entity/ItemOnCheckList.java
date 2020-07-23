@@ -12,7 +12,7 @@ public class ItemOnCheckList {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long quantity;
+    private Long quantity = 0L;
 
     @ManyToOne
     @JoinColumn(name = "checklist_id")

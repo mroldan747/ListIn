@@ -25,3 +25,8 @@ input[type="number"]:not(.browser-default) {
 .done {
     background-color: var(--blue);
 }
+
+.btn {
+    line-height: normal !important;
+    text-transform: inherit !important;
+}

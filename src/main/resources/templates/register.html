@@ -14,7 +14,8 @@
     </nav>
 </header>
 <main class="new-item-main main">
-    <form class="new-item" method="post" action="">
+    <form class="new-item" method="post" action="/register">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
         <div class="row">
             <div class="input-field col s10 offset-s1">
                 <input name="username" class="validate" type="text" id="username">
@@ -38,7 +39,7 @@
 
         <div class="row">
             <div class="input-field col s10 offset-s1">
-                <input name="passConfirmation" class="validate" type="text" id="passConfirmation">
+                <input name="passConfirmation" class="validate" type="password" id="passConfirmation">
                 <label for="passConfirmation">Password Confirmation</label>
             </div>
         </div>
