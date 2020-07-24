@@ -30,7 +30,7 @@
             <button>Reset</button>
         </form>
     </div>
-    <div class="category"th:each="entry : ${itemsCategory}"
+    <div class="category" th:each="entry : ${itemsCategory}"
          th:with="category = ${entry.key}, items = ${entry.value}">
         <div class="row category-title">
             <h3 th:text="${category}">Electronics</h3>
