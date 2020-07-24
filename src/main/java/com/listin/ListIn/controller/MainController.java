@@ -108,6 +108,7 @@ public class MainController {
         }
         return "checklist";
     }
+
     @GetMapping("/searchItemOnChecklist")
     public String searchItemOnChecklist(@RequestParam Long checklistId,
                                         @RequestParam String search,
@@ -165,6 +166,7 @@ public class MainController {
         model.addAttribute("checklist", checklistId);
         return "items";
     }
+
     @PostMapping("/addItems")
     public String addItem(@RequestParam Long checklistId,
                           @RequestParam Long itemId,
